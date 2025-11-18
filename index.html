@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amtsinhaber Berichtsformular – Ahmadiyya</title>
+
+    <!-- Arabische Schrift für die Bismillah -->
+    <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <img src="Ahmadiyya-Logo_Original.png" alt="Ahmadiyya Logo" class="logo">
+    <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+    <h1>Amtsinhaber Berichtsformular Oktober 2025</h1>
+    <h2>Darmstadt West</h2>
+
+    <!-- Zitat -->
+    <blockquote>
+      „Berichte sind nicht nur Zahlen, sondern ein Spiegelbild eures Zustands.
+      Wenn sie wahrheitsgetreu und vollständig sind, dann helfen sie der Jamaat,
+      sich zu verbessern.“
+      <br><small>– Hadrat Mirza Masroor Ahmad (aba)</small>
+    </blockquote>
+
+    <!-- Formular -->
+    <form id="berichtForm" action="https://script.google.com/macros/s/AKfycbw71bB3L_zwp_z9fGXa0EF7o_doE05RSgcZcM4hKYQEIK5oQAjLRoQJlfRB4q8A6qgNDw/exec" method="POST">
+	
+
+      <!-- Abschnitt: Amt -->
+      <fieldset>
+        <legend>Amt</legend>
+        <label for="Amt">Wählen Sie Ihr Amt aus:<span class="pflicht">*</span></label>
+        <select id="Amt" name="Amt" required>
+          <option value="">Bitte auswählen</option>
+          <option>Generalsekretär</option>
+          <option>Sekretär Tabligh</option>
+          <option>Sekretär Tarbiyyat</option>
+          <option>Sekretär Taleem</option>
+          <option>Sekretär Ishaat Sami o Basari</option>
+          <option>Sekretär Umur Kharjiyya</option>
+          <option>Sekretär Umur Amma</option>
+          <option>Sekretär Ziafat</option>
+          <option>Sekretär Maal</option>
+          <option>Sekretär Wassaya</option>
+          <option>Sekretär Taleem-ul-Quran &amp; Waqf-e-Arzi</option>
+          <option>Sekretär Tahrik-e-Jadid</option>
+          <option>Sekretär Waqf-e-Jadid</option>
+          <option>Sekretär Waqf-e-Nau</option>
+        </select>
+      </fieldset>
+
+
+      <!-- ========================================================== -->
+      <!--      AB HIER NUR NOCH AMTS-BEZOGENE FIELDSETS !!!!        -->
+      <!-- ========================================================== -->
+
+      <!-- Generalsekretär -->
+      <fieldset data-amt="Generalsekretär">
+        <legend>Generalsekretär</legend>
+
+        <label>Wurden alle Abteilungsberichte rechtzeitig gesammelt?</label>
+        <select name="gen_berichte_rechtzeitig">
+          <option value="">Bitte auswählen</option><option>Ja</option><option>Nein</option>
+        </select>
+
+        <label>Gab es besondere organisatorische Vorkommnisse?</label>
+        <textarea name="gen_organisatorisches" rows="3"></textarea>
+
+        <label>Wurden Mitglieder über wichtige Ankündigungen informiert?</label>
+        <select name="gen_ankuendigungen">
+          <option value="">Bitte auswählen</option><option>Ja</option><option>Nein</option>
+        </select>
+      </fieldset>
+
+
+      <!-- Sekretär Tabligh -->
+      <fieldset data-amt="Sekretär Tabligh">
+        <legend>Sekretär Tabligh</legend>
+
+        <label>Wie viele Tabligh-Kontakte?</label>
+        <input type="number" min="0" name="tabligh_kontakte">
+
+        <label>Flyer/Bücher verteilt:</label>
+        <input type="number" min="0" name="tabligh_flyer">
+
+        <label>Externe Einladungen:</label>
+        <input type="number" min="0" name="tabligh_einladungen">
+
+        <label>Wurde eine Tabligh-Aktion gemacht?</label>
+        <select name="tabligh_aktivitaet">
+          <option value="">Bitte auswählen</option><option>Ja</option><option>Nein</option>
+        </select>
+      </fieldset>
+
+
+      <!-- Sekretär Tarbiyyat -->
+      <fieldset data-amt="Sekretär Tarbiyyat">
+        <legend>Sekretär Tarbiyyat</legend>
+
+        <label>Krankenbesuche:</label>
+        <input type="number" min="0" name="tarb_krankenbesuche">
+
+        <label>Tarbiyyat-Gespräche:</label>
+        <input type="number" min="0" name="tarb_gespraeche">
+
+        <label>Themen:</label>
+        <textarea name="tarb_themen" rows="3"></textarea>
+
+        <label>Programme:</label>
+        <textarea name="tarb_programme" rows="3"></textarea>
+      </fieldset>
+
+
+      <!-- Sekretär Taleem -->
+      <fieldset data-amt="Sekretär Taleem">
+        <legend>Sekretär Taleem</legend>
+
+        <label>Teilnehmer Taleem-Unterricht:</label>
+        <input type="number" min="0" name="taleem_teilnehmer">
+
+        <label>Bücher:</label>
+        <textarea name="taleem_buecher" rows="3"></textarea>
+
+        <label>Lernziele erreicht?</label>
+        <textarea name="taleem_lernziele" rows="3"></textarea>
+
+        <label>Prüfungen/Test?</label>
+        <select name="taleem_pruefungen">
+          <option value="">Bitte auswählen</option><option>Ja</option><option>Nein</option>
+        </select>
+      </fieldset>
+
+
+      <!-- Sekretär Ishaat Sami o Basari -->
+      <fieldset data-amt="Sekretär Ishaat Sami o Basari">
+        <legend>Sekretär Ishaat Sami o Basari</legend>
+
+        <label>Aufnahmen erstellt?</label>
+        <select name="ishaat_aufnahmen">
+          <option value="">Bitte auswählen</option><option>Ja</option><option>Nein</option>
+        </select>
+
+        <label>Materialien produziert?</label>
+        <textarea name="ishaat_materialien" rows="3"></textarea>
+
+        <label>Technische Probleme?</label>
+        <textarea name="ishaat_probleme" rows="3"></textarea>
+      </fieldset>
+
+
+      <!-- Sekretär Umur Kharjiyya -->
+      <fieldset data-amt="Sekretär Umur Kharjiyya">
+        <legend>Sekretär Umur Kharjiyya</legend>
+
+        <label>Behördenkontakte:</label>
+        <input type="number" min="0" name="uk_kontakte_behoerden">
+
+        <label>Externe Treffen:</label>
+        <input type="number" min="0" name="uk_treffen_extern">
+
+        <label>Neue/Pflege Kontakte:</label>
+        <textarea name="uk_neue_kontakte" rows="3"></textarea>
+      </fieldset>
+
+
+      <!-- Sekretär Umur Amma -->
+      <fieldset data-amt="Sekretär Umur Amma">
+        <legend>Sekretär Umur Amma</legend>
+
+        <label>Fälle soziale Unterstützung:</label>
+        <input type="number" min="0" name="ua_faelle_unterstuetzung">
+
+        <label>Beratung:</label>
+        <textarea name="ua_beratung" rows="3"></textarea>
+
+        <label>Konflikte (ohne Namen):</label>
+        <textarea name="ua_konflikte" rows="3"></textarea>
+      </fieldset>
+
+
+      <!-- Sekretär Ziafat -->
+      <fieldset data-amt="Sekretär Ziafat">
+        <legend>Sekretär Ziafat</legend>
+
+        <label>Mahlzeiten:</label>
+        <input type="number" min="0" name="zia_mahlzeiten">
+
+        <label>Veranstaltungen:</label>
+        <input type="number" min="0" name="zia_veranstaltungen">
+
+        <label>Helfer:</label>
+        <input type="number" min="0" name="zia_helfer">
+
+        <label>Lebensmittelspenden?</label>
+        <select name="zia_spenden">
+          <option value="">Bitte auswählen</option><option>Ja</option><option>Nein</option>
+        </select>
+
+        <label>Details Spenden:</label>
+        <textarea name="zia_spenden_details" rows="3"></textarea>
+      </fieldset>
+
+
+      <!-- Sekretär Maal -->
+      <fieldset data-amt="Sekretär Maal">
+        <legend>Sekretär Maal</legend>
+
+        <label>Rückstand:</label>
+        <input type="number" min="0" name="maal_rueckstand_amt">
+
+        <label>Mitglieder erinnert:</label>
+        <input type="number" min="0" name="maal_mitglieder_erinnert">
+
+        <label>Eingang:</label>
+        <input type="number" min="0" name="maal_eingang_betrag">
+
+        <label>Fälle (ohne Namen):</label>
+        <textarea name="maal_faelle_klaerung" rows="3"></textarea>
+      </fieldset>
+
+
+      <!-- Sekretär Wassaya -->
+      <fieldset data-amt="Sekretär Wassaya">
+        <legend>Sekretär Wassaya</legend>
+
+        <label>Neue Anträge:</label>
+        <input type="number" min="0" name="wassaya_neue_antraege">
+
+        <label>Beratungen:</label>
+        <textarea name="wassaya_beratungen" rows="3"></textarea>
+
+        <label>Rückfragen:</label>
+        <textarea name="wassaya_rueckfragen" rows="3"></textarea>
+      </fieldset>
+
+
+      <!-- Sekretär Taleem-ul-Quran & Waqf-e-Arzi -->
+      <fieldset data-amt="Sekretär Taleem-ul-Quran & Waqf-e-Arzi">
+        <legend>Sekretär Taleem-ul-Quran &amp; Waqf-e-Arzi</legend>
+
+        <label>Teilnehmer Dars:</label>
+        <input type="number" min="0" name="tqwa_teilnehmer_dars">
+
+        <label>Kurse:</label>
+        <input type="number" min="0" name="tqwa_kurse">
+
+        <label>Waqf-e-Arzi Einsätze:</label>
+        <textarea name="tqwa_waqf_e_arzi" rows="3"></textarea>
+
+        <label>Bemerkungen:</label>
+        <textarea name="tqwa_bemerkungen" rows="3"></textarea>
+      </fieldset>
+
+
+      <!-- Sekretär Tahrik-e-Jadid -->
+      <fieldset data-amt="Sekretär Tahrik-e-Jadid">
+        <legend>Sekretär Tahrik-e-Jadid</legend>
+
+        <label>Mitglieder gezahlt:</label>
+        <input type="number" min="0" name="tj_mitglieder_gezahlt">
+
+        <label>Neue Teilnehmer:</label>
+        <input type="number" min="0" name="tj_neue_teilnehmer">
+
+        <label>Erinnerung geschickt?</label>
+        <select name="tj_erinnerung">
+          <option value="">Bitte auswählen</option><option>Ja</option><option>Nein</option>
+        </select>
+
+        <label>Besonderheiten:</label>
+        <textarea name="tj_besonderheiten" rows="3"></textarea>
+      </fieldset>
+
+
+      <!-- Sekretär Waqf-e-Jadid -->
+      <fieldset data-amt="Sekretär Waqf-e-Jadid">
+        <legend>Sekretär Waqf-e-Jadid</legend>
+
+        <label>Teilnehmer:</label>
+        <input type="number" min="0" name="wj_teilnehmer">
+
+        <label>Haushalte besucht:</label>
+        <input type="number" min="0" name="wj_haushalte_besucht">
+
+        <label>Beteiligung (Euro):</label>
+        <input type="number" min="0" name="wj_beteiligung_betrag">
+
+        <label>Bemerkungen:</label>
+        <textarea name="wj_bemerkungen" rows="3"></textarea>
+      </fieldset>
+
+
+      <!-- Sekretär Waqf-e-Nau -->
+      <fieldset data-amt="Sekretär Waqf-e-Nau">
+        <legend>Sekretär Waqf-e-Nau</legend>
+
+        <label>Waqf-e-Nau Kinder:</label>
+        <input type="number" min="0" name="wn_kinder_teilnahme">
+
+        <label>Programme:</label>
+        <textarea name="wn_programme" rows="3"></textarea>
+
+        <label>Eltern informiert?</label>
+        <select name="wn_eltern_informiert">
+          <option value="">Bitte auswählen</option><option>Ja</option><option>Nein</option>
+        </select>
+
+        <label>Bemerkungen:</label>
+        <textarea name="wn_bemerkungen" rows="3"></textarea>
+      </fieldset>
+
+
+      <!-- Sonstiges -->
+      <fieldset>
+        <legend>Sonstiges</legend>
+        <textarea name="bemerkungen" rows="4" placeholder="Optional..."></textarea>
+      </fieldset>
+
+
+      <!-- Absenden -->
+      <button type="submit">Bericht absenden</button>
+
+    </form>
+
+    <!-- Feedback -->
+    <div class="feedback" id="feedback">
+      Jazakallah, Ihr Bericht wurde erfolgreich gesendet!
+    </div>
+
+    <div class="rechtlicher-hinweis">
+      Dieses Formular ist ausschließlich für Mitglieder der Ahmadiyya Muslim Jamaat bestimmt.
+      Alle Angaben sind anonym und vertraulich.
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
