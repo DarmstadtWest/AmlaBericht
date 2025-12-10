@@ -1,6 +1,6 @@
 // 🗓️ Zeitraum, in dem das Formular aktiv ist (mit Uhrzeit)
-const startDatum = new Date("2025-10-01T08:00:00"); // ab 1. Okt 2025, 08:00 Uhr
-const endDatum   = new Date("2025-12-30T23:59:00"); // bis 30. Nov 2025, 23:59 Uhr
+const startDatum = new Date("2025-12-01T08:00:00"); // ab 1. Dez 2025, 08:00 Uhr
+const endDatum   = new Date("2025-12-30T23:59:00"); // bis 30. Dez 2025, 23:59 Uhr
 const heute = new Date();
 
 // Prüfen, ob Formular aktiv ist
@@ -11,6 +11,32 @@ window.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('berichtForm');
   const feedback = document.getElementById('feedback');
   const amtSelect = document.getElementById("Amt");
+
+  // 🔒 Hilfsfunktion: bereits abgegebene Ämter im Dropdown deaktivieren
+  function ladeAbgegebeneAmter() {
+    // gleiche URL wie im <form>, aber mit mode=status
+    const statusUrl = form.action + '?mode=status';
+
+    fetch(statusUrl)
+      .then(response => response.json())
+      .then(data => {
+        if (!data || !Array.isArray(data.amts)) return;
+
+        // Alle Optionen einmal durchgehen
+        const options = Array.from(amtSelect.options);
+
+        data.amts.forEach(amtName => {
+          const opt = options.find(o => o.value === amtName || o.text === amtName);
+          if (opt) {
+            opt.disabled = true; // ausgrauen / deaktivieren
+            opt.textContent = amtName + " (bereits abgegeben)";
+          }
+        });
+      })
+      .catch(err => {
+        console.error('Statusabfrage fehlgeschlagen:', err);
+      });
+  }
 
   // 🟥 ALLE amtsbezogenen Fieldsets auswählen (die ein data-amt haben)
   const amtsFieldsets = document.querySelectorAll("[data-amt]");
@@ -38,6 +64,9 @@ window.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
+  // ✅ Beim Laden: schauen, welche Ämter schon abgegeben haben
+  ladeAbgegebeneAmter();
+
   // 🟥 Bei Änderung des Amts → nur das passende Fieldset anzeigen + Sonstiges leeren
   amtSelect.addEventListener("change", function () {
     const selectedAmt = this.value;
@@ -63,29 +92,45 @@ window.addEventListener('DOMContentLoaded', () => {
   // 📨 Formular absenden
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+
     fetch(form.action, {
       method: form.method,
       body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    }).then(response => {
-      if (response.ok) {
+      headers: { 'Accept': 'text/plain' }
+    })
+      .then(response => response.text())
+      .then(text => {
 
-        form.reset();
-        feedback.style.display = 'block';
-        localStorage.removeItem("berichtData");
+        if (text === 'OK') {
+          // ✅ Erfolg
+          form.reset();
+          feedback.style.display = 'block';
+          localStorage.removeItem("berichtData");
 
-        // Nach Reset wieder alles verstecken
-        hideAllFieldsets();
+          // Nach Reset wieder alles verstecken
+          hideAllFieldsets();
 
-        // Sonstiges leeren
-        if (sonstigesTextarea) sonstigesTextarea.value = "";
+          // Sonstiges leeren
+          if (sonstigesTextarea) sonstigesTextarea.value = "";
 
-      } else {
-        alert('Es gab ein Problem beim Senden des Formulars.');
-      }
-    }).catch(() => {
-      alert('Verbindung fehlgeschlagen. Bitte später erneut versuchen.');
-    });
+          // Status neu laden → gerade eingereichtes Amt deaktivieren
+          ladeAbgegebeneAmter();
+
+        } else if (text === 'ALREADY_EXISTS') {
+          // ❌ Amt hat für diesen Monat schon einen Bericht
+          alert(
+            'Für dieses Amt wurde in diesem Monat bereits ein Bericht eingereicht. ' +
+            'Wenn etwas korrigiert werden muss, bitte den Generalsekretär kontaktieren.'
+          );
+
+        } else {
+          // Unerwartete Antwort
+          alert('Es gab ein Problem beim Senden des Formulars. Antwort vom Server: ' + text);
+        }
+      })
+      .catch(() => {
+        alert('Verbindung fehlgeschlagen. Bitte später erneut versuchen.');
+      });
   });
 
   // 💾 Beim Tippen: Formular-Daten automatisch speichern
@@ -108,4 +153,3 @@ window.addEventListener('DOMContentLoaded', () => {
     amtSelect.dispatchEvent(new Event("change"));
   }
 });
-
